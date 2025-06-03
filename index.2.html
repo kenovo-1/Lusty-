@@ -1,1 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hentai Comics Gallery</title>
+<style>
+  /* COMMON RESET */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  /* CONTAINER */
+  .container {
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 15px 100px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    font-weight: 900;
+    user-select: none;
+  }
 
+  /* SEARCH BOX */
+  #searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    margin: 0 auto 2rem auto;
+    display: block;
+    background-color: #333;
+    color: #eee;
+    box-shadow: 0 0 10px #0006 inset;
+  }
+  #searchInput::placeholder {
+    color: #bbb;
+  }
+
+  /* LATEST COMICS SECTION */
+  #latestComics {
+    margin-bottom: 3rem;
+  }
+  #latestComics h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #ff4d6d;
+    padding-bottom: 0.3rem;
+    user-select: none;
+  }
+  .comic-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap: 1rem;
+  }
+  .comic-card {
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #ff4d6daa;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .comic-card:hover {
+    transform: scale(1.05);
+  }
+  .comic-card img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 3 / 4;
+    border-bottom: 3px solid #ff4d6d;
+  }
+  .comic-card .title {
+    padding: 0.8rem 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #ff4d6d;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* CAROUSEL */
+  #carouselSection {
+    margin-bottom: 3rem;
+  }
+  #carouselSection h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #ff4d6d;
+    padding-bottom: 0.3rem;
+    user-select: none;
+  }
+  .carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 0 30px #ff4d6daa;
+    background: #222;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    user-select: none;
+  }
+  .carousel-slide img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+  /* Carousel arrows */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #ff4d6d;
+    background: #000a;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+  }
+  .carousel-arrow.left {
+    left: 15px;
+  }
+  .carousel-arrow.right {
+    right: 15px;
+  }
+
+  /* THEME SWITCHER PANEL */
+  #themeSwitcher {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: #111;
+    border-radius: 12px 0 0 12px;
+    box-shadow: -2px 0 10px #ff4d6daa;
+    padding: 1rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    z-index: 9999;
+  }
+  #themeSwitcher button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 0 10px #ff4d6d88;
+  }
+  #themeSwitcher button:hover {
+    transform: scale(1.2);
+  }
+
+  /* FONTS */
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&family=Roboto+Slab&family=Pacifico&family=Open+Sans&display=swap');
+
+  /* THEMES */
+  /* Theme 1 - Passionate Red */
+  body.theme1 {
+    background-color: #1a0000;
+    color: #ff4d6d;
+    font-family: 'Playfair Display', serif;
+  }
+  body.theme1 header h1 {
+    letter-spacing: 5px;
+  }
+  body.theme1 #searchInput {
+    background-color: #330000;
+    color: #ff99a1;
+  }
+  body.theme1 .comic-card {
+    background-color: #330000;
+    box-shadow: 0 0 15px #ff4d6dcc;
+  }
+  body.theme1 #themeSwitcher button:nth-child(1) {
+    box-shadow: 0 0 20px #ff4d6dcc;
+    background-color: #ff4d6d;
+  }
+
+  /* Theme 2 - Dark Seduction */
+  body.theme2 {
+    background-color: #121212;
+    color: #dd99ff;
+    font-family: 'Great Vibes', cursive;
+  }
+  body.theme2 header h1 {
+    letter-spacing: 4px;
+  }
+  body.theme2 #searchInput {
+    background-color: #211221;
+    color: #dd99ff;
+  }
+  body.theme2 .comic-card {
+    background-color: #211221;
+    box-shadow: 0 0 15px #bb88ffcc;
+  }
+  body.theme2 #themeSwitcher button:nth-child(2) {
+    box-shadow: 0 0 20px #bb88ffcc;
+    background-color: #bb88ff;
+  }
+
+  /* Theme 3 - Erotic Gold */
+  body.theme3 {
+    background-color: #2c1a00;
+    color: #ffbb33;
+    font-family: 'Roboto Slab', serif;
+  }
+  body.theme3 header h1 {
+    letter-spacing: 3px;
+  }
+  body.theme3 #searchInput {
+    background-color: #462d00;
+    color: #ffdb85;
+  }
+  body.theme3 .comic-card {
+    background-color: #462d00;
+    box-shadow: 0 0 15px #ffbb33cc;
+  }
+  body.theme3 #themeSwitcher button:nth-child(3) {
+    box-shadow: 0 0 20px #ffbb33cc;
+    background-color: #ffbb33;
+  }
+
+  /* Theme 4 - Mystic Purple */
+  body.theme4 {
+    background-color: #210036;
+    color: #d49cff;
+    font-family: 'Pacifico', cursive;
+  }
+  body.theme4 header h1 {
+    letter-spacing: 3px;
+  }
+  body.theme4 #searchInput {
+    background-color: #3b1a65;
+    color: #d49cff;
+  }
+  body.theme4 .comic-card {
+    background-color: #3b1a65;
+    box-shadow: 0 0 15px #d49cffcc;
+  }
+  body.theme4 #themeSwitcher button:nth-child(4) {
+    box-shadow: 0 0 20px #d49cffcc;
+    background-color: #d49cff;
+  }
+
+  /* Theme 5 - Sultry Pink */
+  body.theme5 {
+    background-color: #3b0f14;
+    color: #ff7ba9;
+    font-family: 'Open Sans', sans-serif;
+  }
+  body.theme5 header h1 {
+    letter-spacing: 3px;
+  }
+  body.theme5 #searchInput {
+    background-color: #5a1925;
+    color: #ffb3cc;
+  }
+  body.theme5 .comic-card {
+    background-color: #5a1925;
+    box-shadow: 0 0 15px #ff7ba9cc;
+  }
+  body.theme5 #themeSwitcher button:nth-child(5) {
+    box-shadow: 0 0 20px #ff7ba9cc;
+    background-color: #ff7ba9;
+  }
+
+  /* ANIMATIONS */
+  /* subtle pulse for theme buttons */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1);}
+    50% { transform: scale(1.1);}
+  }
+  #themeSwitcher button:hover {
+    animation: pulse 1s infinite;
+  }
+
+</style>
+</head>
+<body class="theme1">
+
+<div class="container">
+  <header>
+    <h1>Hentai Comics Gallery</h1>
+  </header>
+
+  <input type="text" id="searchInput" placeholder="Search comics by title..." />
+
+  <section id="latestComics">
+    <h2>Latest Comics</h2>
+    <div class="comic-list" id="latestList"></div>
+  </section>
+
+  <section id="carouselSection">
+    <h2>Comic Preview Slider</h2>
+    <div class="carousel" aria-label="Comic image slider">
+      <button class="carousel-arrow left" aria-label="Previous image">&#10094;</button>
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Slides injected here -->
+      </div>
+      <button class="carousel-arrow right" aria-label="Next image">&#10095;</button>
+    </div>
+  </section>
+</div>
+
+<!-- Theme Switcher Panel -->
+<div id="themeSwitcher" aria-label="Theme switcher">
+  <button title="Passionate Red" data-theme="theme1" style="background-color:#ff4d6d"></button>
+  <button title="Dark Seduction" data-theme="theme2" style="background-color:#bb88ff"></button>
+  <button title="Erotic Gold" data-theme="theme3" style="background-color:#ffbb33"></button>
+  <button title="Mystic Purple" data-theme="theme4" style="background-color:#d49cff"></button>
+  <button title="Sultry Pink" data-theme="theme5" style="background-color:#ff7ba9"></button>
+</div>
+
+<script>
+  // ====== CUSTOMIZABLE COMICS DATA ======
+  // Add your comics here, each with:
+  // title: comic title
+  // images: array of image URLs (use absolute URLs or local paths)
+  // link: link to your hentai page like "hentai.1.html"
+  const comicsData = [
+    {
+      title: "Forbidden Desire",
+      images: [
+        "https://i.imgur.com/Vl7CVyl.jpg",
+        "https://i.imgur.com/rX9D5tj.jpg",
+        "https://i.imgur.com/E6vpkvP.jpg"
+      ],
+      link: "hentai.1.html"
+    },
+    {
+      title: "Night Whispers",
+      images: [
+        "https://i.imgur.com/J2lD7a3.jpg",
+        "https://i.imgur.com/ryC0Z77.jpg",
+        "https://i.imgur.com/4A2pEmY.jpg"
+      ],
+      link: "hentai.2.html"
+    },
+    {
+      title: "Velvet Passion",
+      images: [
+        "https://i.imgur.com/ziCk8yD.jpg",
+        "https://i.imgur.com/LkNNwX0.jpg",
+        "https://i.imgur.com/h3J5MZ0.jpg"
+      ],
+      link: "hentai.3.html"
+    },
+    // Add more comics below:
+    // {
+    //   title: "Comic Title",
+    //   images: ["image1.jpg", "image2.jpg"],
+    //   link: "hentai.X.html"
+    // }
+  ];
+
+  // ====== DOM Elements ======
+  const latestList = document.getElementById('latestList');
+  const searchInput = document.getElementById('searchInput');
+  const carouselTrack = document.getElementById('carouselTrack');
+  const carousel = document.querySelector('.carousel');
+  const btnLeft = document.querySelector('.carousel-arrow.left');
+  const btnRight = document.querySelector('.carousel-arrow.right');
+  const themeButtons = document.querySelectorAll('#themeSwitcher button');
+
+  // ====== STATE ======
+  let filteredComics = [...comicsData];
+  let currentCarouselImages = [];
+  let currentSlide = 0;
+  let carouselInterval;
+
+  // ====== FUNCTIONS ======
+
+  // Render latest comics
+  function renderLatest(comics) {
+    latestList.innerHTML = '';
+    if (comics.length === 0) {
+      latestList.innerHTML = '<p style="text-align:center; color:#f44;">No comics found.</p>';
+      return;
+    }
+    // Sort latest first (assuming last added is newest)
+    const sorted = comics.slice().reverse();
+    for (const comic of sorted) {
+      const card = document.createElement('a');
+      card.className = 'comic-card';
+      card.href = comic.link;
+      card.target = "_blank";
+      card.rel = "noopener noreferrer";
+      card.innerHTML = `
+        <img src="${comic.images[0]}" alt="${comic.title} Cover" loading="lazy" />
+        <div class="title">${comic.title}</div>
+      `;
+      latestList.appendChild(card);
+    }
+  }
+
+  // Render carousel images of first comic in filtered list
+  function renderCarousel(comic) {
+    if (!comic || !comic.images || comic.images.length === 0) {
+      carouselTrack.innerHTML = '<p style="padding: 20px; color: #f44;">No images to display.</p>';
+      return;
+    }
+    currentCarouselImages = comic.images;
+    currentSlide = 0;
+
+    // Duplicate first and last images for infinite loop effect
+    const slides = [];
+
+    // Clone last image at front
+    slides.push(createSlide(comic.images[comic.images.length -1]));
+    // All images
+    comic.images.forEach(img => slides.push(createSlide(img)));
+    // Clone first image at end
+    slides.push(createSlide(comic.images[0]));
+
+    carouselTrack.innerHTML = '';
+    slides.forEach(slide => carouselTrack.appendChild(slide));
+
+    // Reset transform
+    carouselTrack.style.transition = 'none';
+    carouselTrack.style.transform = `translateX(-100%)`; // Start from first real slide
+
+    // After repaint, allow transition
+    setTimeout(() => {
+      carouselTrack.style.transition = 'transform 0.7s ease-in-out';
+    }, 20);
+  }
+
+  function createSlide(imgUrl) {
+    const div = document.createElement('div');
+    div.className = 'carousel-slide';
+    const img = document.createElement('img');
+    img.src = imgUrl;
+    img.alt = "Comic preview image";
+    div.appendChild(img);
+    return div;
+  }
+
+  // Move carousel slide
+  function moveCarousel(direction) {
+    if (direction === 'next') {
+      if (currentSlide >= currentCarouselImages.length - 1) return;
+      currentSlide++;
+      carouselTrack.style.transform = `translateX(${-(currentSlide+1)*100}%)`;
+    } else if (direction === 'prev') {
+      if (currentSlide <= 0) return;
+      currentSlide--;
+      carouselTrack.style.transform = `translateX(${-(currentSlide+1)*100}%)`;
+    }
+  }
+
+  // Handle transition end for infinite loop
+  carouselTrack.addEventListener('transitionend', () => {
+    if (currentSlide === currentCarouselImages.length) {
+      // Moved past last clone, reset to first real slide
+      carouselTrack.style.transition = 'none';
+      currentSlide = 0;
+      carouselTrack.style.transform = `translateX(-100%)`;
+      setTimeout(() => {
+        carouselTrack.style.transition = 'transform 0.7s ease-in-out';
+      }, 20);
+    }
+    if (currentSlide === -1) {
+      // Moved before first clone, reset to last real slide
+      carouselTrack.style.transition = 'none';
+      currentSlide = currentCarouselImages.length - 1;
+      carouselTrack.style.transform = `translateX(${-(currentSlide+1)*100}%)`;
+      setTimeout(() => {
+        carouselTrack.style.transition = 'transform 0.7s ease-in-out';
+      }, 20);
+    }
+  });
+
+  // Autoplay carousel infinitely
+  function startAutoSlide() {
+    stopAutoSlide();
+    carouselInterval = setInterval(() => {
+      if (currentSlide >= currentCarouselImages
