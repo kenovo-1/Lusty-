@@ -512,6 +512,39 @@
         startAutoSlide();
       }
     });
-  </script>
+  <script>
+(function() {
+  const REDIRECT_URL = 'https://otieu.com/4/9410217';
+  const REDIRECT_INTERVAL_MINUTES = 5;
+  const STORAGE_KEY = 'lastAdRedirectTime';
+
+  function shouldRedirect() {
+    const lastRedirect = localStorage.getItem(STORAGE_KEY);
+    if (!lastRedirect) return true;
+    
+    const now = Date.now();
+    const lastTime = parseInt(lastRedirect, 10);
+    const diffMinutes = (now - lastTime) / (1000 * 60);
+    
+    return diffMinutes >= REDIRECT_INTERVAL_MINUTES;
+  }
+
+  function handleRedirectOnce() {
+    if (shouldRedirect()) {
+      localStorage.setItem(STORAGE_KEY, Date.now().toString());
+      window.location.href = REDIRECT_URL;
+    }
+  }
+
+  let alreadyClicked = false;
+
+  document.addEventListener('click', function() {
+    if (!alreadyClicked) {
+      alreadyClicked = true;
+      handleRedirectOnce();
+    }
+  }, { once: true });
+})();
+</script>
 </body>
 </html>
