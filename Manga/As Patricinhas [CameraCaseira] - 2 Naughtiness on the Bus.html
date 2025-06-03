@@ -25,27 +25,11 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .viewer-container {
-      width: 90%;
-      max-width: 1200px;
-      height: 85vh;
-      margin: 1rem 0;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
     .controls {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin: 1rem 0;
     }
 
     .controls button {
@@ -61,6 +45,29 @@
 
     .controls button:hover {
       background-color: #a64784;
+    }
+
+    .ad-banner {
+      width: 90%;
+      max-width: 1200px;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .viewer-container {
+      width: 90%;
+      max-width: 1200px;
+      height: 85vh;
+      margin: 1rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .theme-soft-pink {
@@ -89,6 +96,9 @@
     <button onclick="setTheme('night')">Night Mode</button>
   </div>
 
+  <!-- Banner ad container -->
+  <div class="ad-banner" id="adContainer"></div>
+
   <div class="viewer-container" id="viewer">
     <iframe id="mangaFrame"
       src="https://drive.google.com/file/d/1Rbb6DlckI97GVIcPqTgeChANB9PEr8TJ/preview"
@@ -113,6 +123,19 @@
       if (theme === 'dark-red') body.classList.add('theme-dark-red');
       if (theme === 'night') body.classList.add('theme-night');
     }
+
+    // Banner refresh logic every 5 seconds
+    function loadBannerAd() {
+      const container = document.getElementById('adContainer');
+      container.innerHTML = ''; // Clear old banner
+      const s = document.createElement('script');
+      s.src = 'https://vemtoutcheeg.com/400/9410205';
+      container.appendChild(s);
+    }
+
+    // Initial load & interval
+    loadBannerAd();
+    setInterval(loadBannerAd, 5000);
   </script>
 </body>
 </html>
