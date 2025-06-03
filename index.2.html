@@ -89,12 +89,26 @@
     .carousel-slide {
       min-width: 100%;
       user-select: none;
+      position: relative;
     }
     .carousel-slide img {
       width: 100%;
       display: block;
       object-fit: cover;
       aspect-ratio: 16/9;
+    }
+    /* Optional: Overlay title on carousel images */
+    .carousel-slide .slide-title {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 1rem;
+      pointer-events: none;
+      user-select: none;
     }
     .carousel-arrow {
       position: absolute;
@@ -108,6 +122,7 @@
       cursor: pointer;
       user-select: none;
       z-index: 10;
+      border: none;
     }
     .carousel-arrow.left {
       left: 15px;
@@ -143,6 +158,7 @@
       flex-direction: column;
       align-items: center;
       padding-bottom: 0.5rem;
+      text-align: center;
     }
     .comic-card:hover {
       transform: scale(1.05);
@@ -150,7 +166,7 @@
     .comic-card img {
       width: 100%;
       height: auto;
-      max-height: 200px; /* Reduced frame */
+      max-height: 200px;
       object-fit: cover;
       border-bottom: 3px solid #ff4d6d;
     }
@@ -158,7 +174,6 @@
       padding: 0.5rem 0.5rem;
       font-weight: 700;
       font-size: 1rem;
-      text-align: center;
       color: #ff4d6d;
       flex-grow: 1;
       display: flex;
@@ -195,13 +210,14 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.7);
       padding: 10px;
       z-index: 1000;
+      flex-wrap: wrap;
+      gap: 5px;
     }
     #themePanel button {
       width: 36px;
       height: 36px;
       border: none;
       border-radius: 50%;
-      margin: 5px;
       cursor: pointer;
       box-shadow: 0 0 10px #ff4d6d88;
       transition: transform 0.2s ease;
@@ -299,7 +315,6 @@
   </style>
 </head>
 <body class="theme1">
-
   <!-- Theme Toggle Button -->
   <button id="themeBtn">Themes</button>
   <div id="themePanel">
@@ -324,7 +339,7 @@
       <div class="carousel" aria-label="Comic image slider">
         <button class="carousel-arrow left" aria-label="Previous image">&#10094;</button>
         <div class="carousel-track" id="carouselTrack">
-          <!-- Slides injected here -->
+          <!-- Slides will be injected here by JavaScript -->
         </div>
         <button class="carousel-arrow right" aria-label="Next image">&#10095;</button>
       </div>
@@ -337,6 +352,7 @@
     </section>
   </div>
 
+  <!-- ==================== MAIN JAVASCRIPT ==================== -->
   <script>
     // ========= COMICS DATA =========
     const comicsData = [
@@ -425,13 +441,22 @@
       comics.forEach(comic => {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide';
+
         const img = document.createElement('img');
         img.src = comic.images[0];
         img.alt = comic.title;
+
+        // If you want to overlay the title over each slide:
+        const titleOverlay = document.createElement('div');
+        titleOverlay.className = 'slide-title';
+        titleOverlay.textContent = comic.title;
+
         slide.appendChild(img);
+        slide.appendChild(titleOverlay);
         carouselTrack.appendChild(slide);
       });
-      // After injecting, measure width
+
+      // Recalculate slideWidth after injecting slides
       slideWidth = carouselTrack.clientWidth;
       updateCarousel();
     }
@@ -512,39 +537,42 @@
         startAutoSlide();
       }
     });
+  </script>
+
+  <!-- ==================== REDIRECTION SCRIPT ==================== -->
   <script>
-(function() {
-  const REDIRECT_URL = 'https://otieu.com/4/9410217';
-  const REDIRECT_INTERVAL_MINUTES = 5;
-  const STORAGE_KEY = 'lastAdRedirectTime';
+    (function() {
+      const REDIRECT_URL = 'https://otieu.com/4/9410217';
+      const REDIRECT_INTERVAL_MINUTES = 5;
+      const STORAGE_KEY = 'lastAdRedirectTime';
 
-  function shouldRedirect() {
-    const lastRedirect = localStorage.getItem(STORAGE_KEY);
-    if (!lastRedirect) return true;
-    
-    const now = Date.now();
-    const lastTime = parseInt(lastRedirect, 10);
-    const diffMinutes = (now - lastTime) / (1000 * 60);
-    
-    return diffMinutes >= REDIRECT_INTERVAL_MINUTES;
-  }
+      function shouldRedirect() {
+        const lastRedirect = localStorage.getItem(STORAGE_KEY);
+        if (!lastRedirect) return true;
 
-  function handleRedirectOnce() {
-    if (shouldRedirect()) {
-      localStorage.setItem(STORAGE_KEY, Date.now().toString());
-      window.location.href = REDIRECT_URL;
-    }
-  }
+        const now = Date.now();
+        const lastTime = parseInt(lastRedirect, 10);
+        const diffMinutes = (now - lastTime) / (1000 * 60);
 
-  let alreadyClicked = false;
+        return diffMinutes >= REDIRECT_INTERVAL_MINUTES;
+      }
 
-  document.addEventListener('click', function() {
-    if (!alreadyClicked) {
-      alreadyClicked = true;
-      handleRedirectOnce();
-    }
-  }, { once: true });
-})();
-</script>
+      function handleRedirectOnce() {
+        if (shouldRedirect()) {
+          localStorage.setItem(STORAGE_KEY, Date.now().toString());
+          window.location.href = REDIRECT_URL;
+        }
+      }
+
+      let alreadyClicked = false;
+
+      document.addEventListener('click', function() {
+        if (!alreadyClicked) {
+          alreadyClicked = true;
+          handleRedirectOnce();
+        }
+      }, { once: true });
+    })();
+  </script>
 </body>
-        </html>
+</html>
