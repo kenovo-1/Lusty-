@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://lusty.work.gd/sitemap.xml
