@@ -1,274 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lust Work GD</title>
-  <meta name="description" content="Lust.Work.GD – Viral MMS, free & paid exclusive content. Explore with style.">
-  <meta name="keywords" content="viral, mms, lust, paid content, free mms, hot videos">
-  <link rel="icon" href="Images/InShot_20250823_102307035.jpg" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lust.Work.GD — Viral MMS (Free & Paid)</title>
+  <meta name="description" content="Lust.Work.GD — Viral MMS with free and premium sections.">
+  <meta name="keywords" content="viral mms, lust, free videos, paid content, premium" />
+  <meta name="author" content="Lust Work" />
 
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Social -->
+  <meta property="og:title" content="Lust Work — Viral MMS" />
+  <meta property="og:description" content="Browse free & premium MMS galleries on Lust Work." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lust.work.gd/" />
+  <meta property="og:image" content="Images/InShot_20250823_102307035.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="Images/InShot_20250823_102307035.jpg" type="image/png" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 
   <style>
-    /* Neon pink animated background */
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background: linear-gradient(270deg, #ff0080, #ff00ff, #ff1493, #ff0066);
-      background-size: 600% 600%;
-      animation: bgMove 12s ease infinite;
+    :root{
+      --neon-pink: #ff00a8;
+      --neon-green: #00ffae;
+      --text: #ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --glass2: rgba(255,255,255,0.09);
+      --card-radius: 14px;
+      --maxw: 1200px;
+    }
+
+    * { box-sizing: border-box }
+    html, body { margin:0; padding:0; height:100% }
+
+    /* Neon Pink <-> Green animated background */
+    body{
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(800px 500px at 15% 15%, rgba(255,0,168,0.20), transparent 35%),
+        radial-gradient(900px 600px at 85% 85%, rgba(0,255,174,0.18), transparent 40%),
+        linear-gradient(120deg, #0d0012, #080015);
+      position: relative;
       overflow-x: hidden;
     }
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .bg-anim{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      animation: neonSweep 14s ease-in-out infinite;
+      background:
+        radial-gradient(600px 420px at 20% 30%, rgba(255,0,168,0.12), transparent 35%),
+        radial-gradient(700px 480px at 70% 75%, rgba(0,255,174,0.12), transparent 40%);
+    }
+    @keyframes neonSweep{
+      0%   { transform: translate3d(0,0,0) }
+      50%  { transform: translate3d(0,-2%,0) }
+      100% { transform: translate3d(0,0,0) }
     }
 
-    h2 {
-      text-align: center;
-      margin: 30px 0 15px;
-      font-size: 1.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(255, 0, 128, 0.9);
-    }
-
-    /* Scrollbars */
-    .scrollbar {
-      display: flex;
-      overflow-x: auto;
-      gap: 12px;
-      padding: 15px;
-      scroll-snap-type: x mandatory;
-    }
-    .scrollbar::-webkit-scrollbar {
-      height: 8px;
-    }
-    .scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.3);
-      border-radius: 10px;
-    }
-
-    /* Card style */
-    .card {
-      flex: 0 0 auto;
-      width: 240px;
-      min-width: 200px;
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-      scroll-snap-align: center;
-      backdrop-filter: blur(8px);
-    }
-    .card .img-wrap {
-      width: 100%;
-      height: 180px;
-      overflow: hidden;
-      border-radius: 8px;
-      background: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .card .meta {
-      padding: 6px 4px 0;
-      font-size: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .card .price {
-      font-weight: 600;
-      color: #ff99ff;
-    }
-
-    /* Gallery */
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
+    /* Layout */
+    .wrap{
+      max-width: var(--maxw);
+      margin: 28px auto;
       padding: 20px;
     }
-    .gallery img {
-      width: 180px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 8px;
-      flex: 0 0 auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+
+    header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--card-radius);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.55);
+      backdrop-filter: blur(8px);
+    }
+    .brand{
+      display:flex; align-items:center; gap: 14px;
+    }
+    .logo{
+      width: 56px; height: 56px; border-radius: 12px;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Orbitron', sans-serif; font-weight:700; color:#0b0b0b;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-green));
+      box-shadow: 0 10px 30px rgba(255,0,168,0.18), 0 8px 24px rgba(0,255,174,0.12);
+    }
+    .title{
+      font-family:'Orbitron', sans-serif;
+      letter-spacing: 1px; font-size: 1.35rem;
+      text-shadow: 0 0 14px rgba(255,0,168,0.35), 0 0 12px rgba(0,255,174,0.25);
+    }
+    .tag{
+      font-size: .9rem; opacity: .75;
     }
 
     /* Banner Ad */
-    .banner-ad {
-      text-align: center;
-      margin: 20px auto;
+    .banner-ad{
+      display:flex; justify-content:center; align-items:center;
+      margin: 18px 0 8px;
+    }
+    .banner-inner{
+      width: 468px; max-width: 100%; height: 60px;
+      display:flex; align-items:center; justify-content:center;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.45);
     }
 
-    /* Smart Link Overlay */
-    #smartOverlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    #smartOverlay.show { display: flex; }
-    #smartBox {
-      position: relative;
-      width: 90%;
-      max-width: 800px;
-      height: 70%;
-      background: #000;
-      border-radius: 12px;
+    /* Section blocks */
+    section{
+      margin: 22px 0 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--card-radius);
+      box-shadow: 0 10px 36px rgba(0,0,0,0.50);
+      backdrop-filter: blur(6px);
       overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.7);
     }
-    #smartFrame {
+    section h2{
+      margin: 0; padding: 14px 16px;
+      font-family:'Orbitron', sans-serif;
+      font-size: 1.05rem; letter-spacing: .5px;
+      background: linear-gradient(90deg, rgba(255,0,168,0.18), rgba(0,255,174,0.18));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Horizontal scrollers */
+    .scrollbar{
+      display:flex; gap: 14px; overflow-x:auto; padding: 14px;
+      scroll-snap-type: x mandatory;
+    }
+    .scrollbar::-webkit-scrollbar{ height:10px }
+    .scrollbar::-webkit-scrollbar-thumb{
+      background: linear-gradient(90deg, rgba(255,0,168,0.45), rgba(0,255,174,0.45));
+      border-radius: 20px;
+    }
+
+    /* Cards */
+    .card{
+      flex: 0 0 auto;
+      width: clamp(180px, 35vw, 260px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      scroll-snap-align: center;
+    }
+    .img-wrap{
       width: 100%;
-      height: 100%;
-      border: none;
+      aspect-ratio: 13/9; /* Keeps frame responsive for any image */
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0f0f10;
+      display:flex; align-items:center; justify-content:center;
     }
-    #closeSmart {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      background: #ff0099;
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      width: 32px; height: 32px;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: bold;
+    .card img{
+      width: 100%; height: 100%;
+      object-fit: cover; display:block;
+    }
+    .meta{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 8px 2px 0; font-size: .92rem;
+    }
+    .price{ font-weight: 600; color: #cafff0 }
+
+    /* Gallery */
+    .gallery{
+      padding: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .gallery .gwrap{
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0f0f10;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    }
+    .gallery img{ width:100%; height:100%; object-fit:cover; display:block }
+
+    footer{
+      text-align:center; color: rgba(255,255,255,0.7);
+      margin: 16px 0 30px; font-size: .92rem;
+    }
+
+    /* Smart Link Overlay (iframe disabled from clicks) */
+    #smartOverlay{
+      position: fixed; inset: 0; display: none;
+      align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.78);
+      z-index: 9999;
+      padding: 16px;
+    }
+    #smartOverlay.show{ display:flex }
+    #smartBox{
+      position: relative;
+      width: min(920px, 96vw);
+      height: min(72vh, 780px);
+      background: #050507;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.65);
+    }
+    #smartFrame{
+      width:100%; height:100%; border:0; background:#fff;
+      /* We keep pointer events enabled on iframe itself,
+         but we place a shield on top to intercept clicks. */
+    }
+    /* Click-blocking shield sits above iframe; only Close button is above shield */
+    #shield{
+      position:absolute; inset:0; background: transparent;
+      z-index: 5; /* below the close button which will have higher z */
+      pointer-events: auto; /* intercept all clicks/touches */
+    }
+    #closeSmart{
+      position:absolute; right:10px; top:10px;
+      z-index: 10;
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 0; cursor:pointer; font-weight: 800; font-size: 18px;
+      color:#0b0b0b;
+      background: linear-gradient(135deg, var(--neon-green), var(--neon-pink));
+      box-shadow: 0 10px 26px rgba(255,0,168,0.25), 0 8px 20px rgba(0,255,174,0.18);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 640px){
+      .title{ font-size: 1.1rem }
+      .logo{ width:48px; height:48px }
+      .meta{ font-size: .86rem }
     }
   </style>
 </head>
 <body>
+  <div class="bg-anim" aria-hidden="true"></div>
 
-  <h2>🔥 Free Section</h2>
-  <div class="scrollbar" id="freeSection"></div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">LW</div>
+        <div>
+          <div class="title">Lust Work</div>
+          <div class="tag">Viral MMS • Free & Premium</div>
+        </div>
+      </div>
+    </header>
 
-  <h2>💎 Paid Section</h2>
-  <div class="scrollbar" id="paidSection"></div>
+    <!-- Banner Ad (468x60) -->
+    <div class="banner-ad" role="region" aria-label="banner advertisement">
+      <div class="banner-inner" id="bannerSlot">
+        <!-- Your 468x60 code -->
+        <script type="text/javascript">
+          atOptions = {
+            'key' : '996a8692d23fea3e145411158d205129',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/996a8692d23fea3e145411158d205129/invoke.js" async></script>
+      </div>
+    </div>
 
-  <h2>📸 Gallery</h2>
-  <div class="gallery" id="gallery"></div>
+    <!-- Free -->
+    <section>
+      <h2>🔥 Free Section</h2>
+      <div class="scrollbar" id="freeSection"></div>
+    </section>
 
-  <!-- Banner Ad -->
-  <div class="banner-ad">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '996a8692d23fea3e145411158d205129',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/996a8692d23fea3e145411158d205129/invoke.js"></script>
+    <!-- Paid -->
+    <section>
+      <h2>💎 Paid Section</h2>
+      <div class="scrollbar" id="paidSection"></div>
+    </section>
+
+    <!-- Gallery -->
+    <section>
+      <h2>📸 Gallery</h2>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <footer>© <span id="year"></span> Lust Work — Built with ❤️</footer>
   </div>
 
-  <!-- Smart Link Overlay -->
-  <div id="smartOverlay">
-    <div id="smartBox">
-      <button id="closeSmart">×</button>
-      <iframe id="smartFrame" src=""></iframe>
+  <!-- Smart Link Modal (shows once/5 mins; iframe clicks blocked by shield) -->
+  <div id="smartOverlay" role="dialog" aria-modal="true" aria-label="Sponsored content">
+    <div id="smartBox" role="document">
+      <button id="closeSmart" title="Close">✕</button>
+      <div id="shield" title="Ad — close to continue"></div>
+      <iframe id="smartFrame" src="about:blank" title="Sponsored"></iframe>
     </div>
   </div>
 
   <script>
-    /* -------- Database: Just edit arrays below -------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* =========================
+       EASY CUSTOMIZATION: DATA
+       ========================= */
     const freeData = [
-      {title:"Free 1", img:"free1.jpg", price:"Free"},
-      {title:"Free 2", img:"free2.jpg", price:"Free"},
-      {title:"Free 3", img:"free3.jpg", price:"Free"}
+      { title: "Free 1", img: "images/free1.jpg", price: "Free" },
+      { title: "Free 2", img: "images/free2.jpg", price: "Free" },
+      { title: "Free 3", img: "images/free3.jpg", price: "Free" },
+      // add more...
     ];
     const paidData = [
-      {title:"Paid 1", img:"paid1.jpg", price:"$5"},
-      {title:"Paid 2", img:"paid2.jpg", price:"$10"},
-      {title:"Paid 3", img:"paid3.jpg", price:"$7"}
+      { title: "Premium 1", img: "images/paid1.jpg", price: "₹99" },
+      { title: "Premium 2", img: "images/paid2.jpg", price: "₹149" },
+      { title: "Premium 3", img: "images/paid3.jpg", price: "₹199" },
+      // add more...
     ];
     const galleryData = [
-      "gallery1.jpg","gallery2.jpg","gallery3.jpg",
-      "gallery4.jpg","gallery5.jpg"
+      "images/g1.jpg", "images/g2.jpg", "images/g3.jpg",
+      "images/g4.jpg", "images/g5.jpg",
+      // add more...
     ];
 
-    function renderCards(data, containerId){
-      const container = document.getElementById(containerId);
-      data.forEach(item=>{
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="img-wrap"><img src="${item.img}" alt="${item.title}"></div>
-          <div class="meta"><div>${item.title}</div><div class="price">${item.price}</div></div>
-        `;
-        container.appendChild(card);
-      });
+    /* ================
+       RENDER HELPERS
+       ================ */
+    function cardTemplate(item){
+      return `
+        <div class="card">
+          <div class="img-wrap"><img loading="lazy" src="${item.img}" alt="${item.title}"></div>
+          <div class="meta">
+            <div>${item.title}</div>
+            <div class="price">${item.price}</div>
+          </div>
+        </div>
+      `;
     }
-
-    function renderGallery(data, containerId){
-      const container = document.getElementById(containerId);
-      data.forEach(src=>{
-        const img = document.createElement('img');
-        img.src = src;
-        container.appendChild(img);
-      });
+    function renderCards(data, targetId){
+      const el = document.getElementById(targetId);
+      el.innerHTML = data.map(cardTemplate).join('');
+    }
+    function renderGallery(data, targetId){
+      const el = document.getElementById(targetId);
+      el.innerHTML = data.map(src => `
+        <div class="gwrap"><img loading="lazy" src="${src}" alt=""></div>
+      `).join('');
     }
 
     renderCards(freeData, 'freeSection');
     renderCards(paidData, 'paidSection');
     renderGallery(galleryData, 'gallery');
 
-    /* -------- Smart Link Modal -------- */
+    /* =======================
+       SMART LINK MODAL (SAFE)
+       - shows once per 5 mins
+       - loads in iframe only
+       - click-blocking shield
+       ======================= */
     (function smartLink(){
-      var overlay = document.getElementById('smartOverlay');
-      var iframe = document.getElementById('smartFrame');
-      var closeBtn = document.getElementById('closeSmart');
-      var smartUrl = 'https://www.profitableratecpm.com/m5mi6ysh?key=9c4ddf0797f28bf610ffd7af70515e3d';
+      const overlay = document.getElementById('smartOverlay');
+      const iframe  = document.getElementById('smartFrame');
+      const closeBtn= document.getElementById('closeSmart');
+      const shield  = document.getElementById('shield');
+      const SMART_URL = 'https://www.profitableratecpm.com/m5mi6ysh?key=9c4ddf0797f28bf610ffd7af70515e3d';
+      const COOLDOWN_MS = 5 * 60 * 1000;
 
-      function showOverlay(){
-        iframe.src = smartUrl;
+      function show(){
+        iframe.src = SMART_URL;       // stays in iframe
         overlay.classList.add('show');
       }
+      function hide(){
+        overlay.classList.remove('show');
+        // clear the frame to stop any media
+        try { iframe.src = 'about:blank'; } catch(e){}
+      }
 
-      window.addEventListener('load', function(){
-        var lastShown = localStorage.getItem('smartLastShown');
-        var now = Date.now();
-        if (!lastShown || now - lastShown > 5*60*1000) {
-          setTimeout(function(){
-            showOverlay();
-            localStorage.setItem('smartLastShown', now);
-          }, 1000);
+      // only once per 5 minutes
+      window.addEventListener('load', () => {
+        try{
+          const last = parseInt(localStorage.getItem('smartLastShown') || '0', 10);
+          const now = Date.now();
+          if (!last || now - last > COOLDOWN_MS) {
+            setTimeout(() => {
+              show();
+              localStorage.setItem('smartLastShown', String(now));
+            }, 1000);
+          }
+        }catch(e){
+          // if localStorage blocked, still show once after delay
+          setTimeout(show, 1000);
         }
       });
 
-      closeBtn.addEventListener('click', function(){
-        overlay.classList.remove('show');
-        iframe.src = 'about:blank';
+      // Close logic
+      closeBtn.addEventListener('click', hide);
+
+      // Clicking outside modal closes
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) hide();
       });
 
-      overlay.addEventListener('click', function(e){
-        if(e.target === overlay) closeBtn.click();
+      // ESC to close
+      document.addEventListener('keyup', (e) => {
+        if (e.key === 'Escape') hide();
       });
-      document.addEventListener('keyup', function(e){
-        if(e.key === 'Escape') closeBtn.click();
-      });
+
+      // IMPORTANT: block clicks to iframe entirely
+      // Shield intercepts all clicks/touches; only close button works
+      shield.addEventListener('click', (e) => {
+        // do nothing; just swallow the click
+        e.preventDefault();
+        e.stopPropagation();
+      }, { passive: false });
+      shield.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }, { passive: false });
     })();
   </script>
 </body>
