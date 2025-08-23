@@ -1,200 +1,241 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Lust Work — Viral MMS (Free & Paid)</title>
-  <meta name="description" content="Lust Work — viral MMS collection with free and paid sections. Explore trending content and premium galleries.">
-  <meta name="keywords" content="viral mms, free videos, paid content, Lust Work, trending">
-  <meta name="author" content="Lust Work">  <!-- Open Graph / Social -->  <meta property="og:title" content="Lust Work — Viral MMS">
-  <meta property="og:description" content="Browse free & premium MMS galleries on Lust Work.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://lust.work.gd/">
-  <meta property="og:image" content="Images/InShot_20250823_102307035.jpg">  <!-- Twitter -->  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lust Work — Viral MMS">
-  <meta name="twitter:description" content="Browse free & premium MMS galleries on Lust Work.">  <!-- Favicon (place favicon.png in repo root) -->  <link rel="icon" href="/favicon.png" type="image/png">  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">  <style>
-    :root{
-      --neon-1: #ff00a8;
-      --neon-2: #ff66cc;
-      --glass: rgba(255,255,255,0.06);
-      --accent: #ff66ff;
-      --text: #ffffff;
-      --max-width: 1200px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lust Work GD</title>
+  <meta name="description" content="Lust.Work.GD – Viral MMS, free & paid exclusive content. Explore with style.">
+  <meta name="keywords" content="viral, mms, lust, paid content, free mms, hot videos">
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Neon pink animated background */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: linear-gradient(270deg, #ff0080, #ff00ff, #ff1493, #ff0066);
+      background-size: 600% 600%;
+      animation: bgMove 12s ease infinite;
+      overflow-x: hidden;
+    }
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    *{box-sizing: border-box}
-    html,body{height:100%;margin:0;font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto; color:var(--text);}
-
-    /* Neon animated background */
-    body{
-      background: radial-gradient(circle at 10% 20%, rgba(255,0,128,0.12), transparent 10%),
-                  radial-gradient(circle at 90% 80%, rgba(255,102,204,0.08), transparent 12%),
-                  linear-gradient(120deg, #230025 0%, #3a002f 25%, #1e0020 50%, #3a002f 75%, #230025 100%);
-      overflow-y: auto;
+    h2 {
+      text-align: center;
+      margin: 30px 0 15px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px rgba(255, 0, 128, 0.9);
     }
 
-    /* Subtle animated glow overlay */
-    .bg-glow{position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0.9;animation:glow 14s linear infinite;}
-    @keyframes glow{
-      0%{background: radial-gradient(600px 400px at 20% 20%, rgba(255,0,128,0.07), transparent 10%), radial-gradient(800px 500px at 80% 80%, rgba(255,102,204,0.06), transparent 12%)}
-      50%{background: radial-gradient(600px 400px at 30% 30%, rgba(255,0,128,0.09), transparent 10%), radial-gradient(800px 500px at 70% 70%, rgba(255,102,204,0.08), transparent 12%)}
-      100%{background: radial-gradient(600px 400px at 20% 20%, rgba(255,0,128,0.07), transparent 10%), radial-gradient(800px 500px at 80% 80%, rgba(255,102,204,0.06), transparent 12%)}
+    /* Scrollbars */
+    .scrollbar {
+      display: flex;
+      overflow-x: auto;
+      gap: 12px;
+      padding: 15px;
+      scroll-snap-type: x mandatory;
+    }
+    .scrollbar::-webkit-scrollbar {
+      height: 8px;
+    }
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 10px;
     }
 
-    /* Page container */
-    .wrap{max-width:var(--max-width);margin:28px auto;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;box-shadow:0 8px 40px rgba(0,0,0,0.6);backdrop-filter: blur(6px);}
-
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--neon-1),var(--neon-2));box-shadow:0 6px 20px rgba(255,0,128,0.15);font-family:'Orbitron',sans-serif;font-weight:700;color:#111}
-    .title{font-family:'Orbitron',sans-serif;font-size:1.4rem;letter-spacing:1px}
-    .tag{font-size:0.85rem;color:rgba(255,255,255,0.75)}
-
-    /* Banner ad area */
-    .banner-ad{display:flex;align-items:center;justify-content:center;margin:18px 0}
-    .banner-inner{width:468px;max-width:100%;height:60px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:var(--glass);overflow:hidden}
-
-    /* Sections */
-    .section{margin:20px 0}
-    .section h2{font-family:'Orbitron',sans-serif;margin:6px 8px 12px;font-size:1.1rem;color:var(--accent);text-shadow:0 4px 18px rgba(255,0,128,0.12)}
-
-    .scrollbar{display:flex;gap:14px;overflow-x:auto;padding:10px 6px;scrollbar-width:thin;scroll-snap-type:x mandatory}
-    .card{flex:0 0 auto;width:260px;min-width:200px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:10px;padding:8px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 6px 20px rgba(0,0,0,0.45);scroll-snap-align:center}
-    .card img{width:100%;height:150px;object-fit:cover;border-radius:6px;display:block}
-    .card .meta{margin-top:8px}
-    .price{font-weight:600;color: #ffb0e6}
-
-    /* Gallery row under sections */
-    .gallery{display:flex;gap:12px;overflow-x:auto;padding:12px;border-radius:8px}
-    .gallery img{width:180px;height:120px;object-fit:cover;border-radius:8px;flex:0 0 auto}
-
-    /* Smart link modal overlay */
-    .overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.75));z-index:9999}
-    .overlay.show{display:flex}
-    .modal{width:min(980px,95%);height:min(700px,90%);background:#0b0010;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.7);border:1px solid rgba(255,0,128,0.08)}
-    .modal iframe{width:100%;height:100%;border:0;background:white}
-    .close-x{position:absolute;right:10px;top:10px;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--neon-2),var(--neon-1));color:#111;font-weight:700;border:0;cursor:pointer;z-index:2;box-shadow:0 6px 18px rgba(255,0,128,0.18)}
-
-    /* small-screen tweaks */
-    @media (max-width:600px){
-      .card{width:180px}
-      .card img{height:120px}
-      .gallery img{width:140px;height:96px}
-      .logo{width:46px;height:46px}
-      .title{font-size:1.1rem}
+    /* Card style */
+    .card {
+      flex: 0 0 auto;
+      width: 240px;
+      min-width: 200px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+      scroll-snap-align: center;
+      backdrop-filter: blur(8px);
+    }
+    .card .img-wrap {
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card .meta {
+      padding: 6px 4px 0;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .card .price {
+      font-weight: 600;
+      color: #ff99ff;
     }
 
-    /* subtle scrollbar styling for webkit */
-    .scrollbar::-webkit-scrollbar, .gallery::-webkit-scrollbar{height:10px}
-    .scrollbar::-webkit-scrollbar-thumb, .gallery::-webkit-scrollbar-thumb{background:rgba(255,0,128,0.18);border-radius:20px}
-  </style></head>
+    /* Gallery */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 180px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    /* Banner Ad */
+    .banner-ad {
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    /* Smart Link Overlay */
+    #smartOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #smartOverlay.show { display: flex; }
+    #smartBox {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      height: 70%;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+    }
+    #smartFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    #closeSmart {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      background: #ff0099;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
 <body>
-  <div class="bg-glow" aria-hidden="true"></div>  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">LW</div>
-        <div>
-          <div class="title">Lust Work</div>
-          <div class="tag">Viral MMS • Free & Premium</div>
-        </div>
-      </div><nav aria-label="main navigation">
-    <!-- Add nav links if needed -->
-  </nav>
-</header>
 
-<!-- Banner ad (468x60) -->
-<div class="banner-ad" role="region" aria-label="banner advertisement">
-  <div class="banner-inner">
-    <!-- --- User's banner ad code inserted below --- -->
-    <div id="banner-ad-slot" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"></div>
-  </div>
-</div>
-
-<!-- Free Section -->
-<section class="section">
   <h2>🔥 Free Section</h2>
-  <div class="scrollbar" id="free-scroll">
-    <div class="card">
-      <img src="free1.jpg" alt="Free 1">
-      <div class="meta"><div>Title Free 1</div><div class="price">Free</div></div>
-    </div>
-    <div class="card">
-      <img src="free2.jpg" alt="Free 2">
-      <div class="meta"><div>Title Free 2</div><div class="price">Free</div></div>
-    </div>
-    <div class="card">
-      <img src="free3.jpg" alt="Free 3">
-      <div class="meta"><div>Title Free 3</div><div class="price">Free</div></div>
-    </div>
-  </div>
-</section>
+  <div class="scrollbar" id="freeSection"></div>
 
-<!-- Paid Section -->
-<section class="section">
   <h2>💎 Paid Section</h2>
-  <div class="scrollbar" id="paid-scroll">
-    <div class="card">
-      <img src="paid1.jpg" alt="Paid 1">
-      <div class="meta"><div>Premium 1</div><div class="price">₹99</div></div>
-    </div>
-    <div class="card">
-      <img src="paid2.jpg" alt="Paid 2">
-      <div class="meta"><div>Premium 2</div><div class="price">₹149</div></div>
-    </div>
-    <div class="card">
-      <img src="paid3.jpg" alt="Paid 3">
-      <div class="meta"><div>Premium 3</div><div class="price">₹199</div></div>
+  <div class="scrollbar" id="paidSection"></div>
+
+  <h2>📸 Gallery</h2>
+  <div class="gallery" id="gallery"></div>
+
+  <!-- Banner Ad -->
+  <div class="banner-ad">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '996a8692d23fea3e145411158d205129',
+        'format' : 'iframe',
+        'height' : 60,
+        'width' : 468,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/996a8692d23fea3e145411158d205129/invoke.js"></script>
+  </div>
+
+  <!-- Smart Link Overlay -->
+  <div id="smartOverlay">
+    <div id="smartBox">
+      <button id="closeSmart">×</button>
+      <iframe id="smartFrame" src=""></iframe>
     </div>
   </div>
-</section>
 
-<!-- Gallery row (images aligned in line) -->
-<section class="section">
-  <h2>Gallery</h2>
-  <div class="gallery" aria-hidden="false">
-    <img src="g1.jpg" alt="gallery 1">
-    <img src="g2.jpg" alt="gallery 2">
-    <img src="g3.jpg" alt="gallery 3">
-    <img src="g4.jpg" alt="gallery 4">
-    <img src="g5.jpg" alt="gallery 5">
-  </div>
-</section>
+  <script>
+    /* -------- Database: Just edit arrays below -------- */
+    const freeData = [
+      {title:"Free 1", img:"free1.jpg", price:"Free"},
+      {title:"Free 2", img:"free2.jpg", price:"Free"},
+      {title:"Free 3", img:"free3.jpg", price:"Free"}
+    ];
+    const paidData = [
+      {title:"Paid 1", img:"paid1.jpg", price:"$5"},
+      {title:"Paid 2", img:"paid2.jpg", price:"$10"},
+      {title:"Paid 3", img:"paid3.jpg", price:"$7"}
+    ];
+    const galleryData = [
+      "gallery1.jpg","gallery2.jpg","gallery3.jpg",
+      "gallery4.jpg","gallery5.jpg"
+    ];
 
-<footer style="text-align:center;margin-top:20px;color:rgba(255,255,255,0.6);font-size:0.9rem">
-  © <span id="year"></span> Lust Work — Built with ❤️
-</footer>
+    function renderCards(data, containerId){
+      const container = document.getElementById(containerId);
+      data.forEach(item=>{
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="img-wrap"><img src="${item.img}" alt="${item.title}"></div>
+          <div class="meta"><div>${item.title}</div><div class="price">${item.price}</div></div>
+        `;
+        container.appendChild(card);
+      });
+    }
 
-  </div>  <!-- Smart link modal (appears 1s after page load) -->  <div id="smartOverlay" class="overlay" role="dialog" aria-modal="true" aria-label="Sponsored">
-    <div class="modal" role="document">
-      <button class="close-x" id="closeSmart" title="Close">✕</button>
-      <iframe id="smartFrame" src="about:blank" title="Sponsored content" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
-    </div>
-  </div>  <!-- Scripts -->  <script>
-    // set year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    function renderGallery(data, containerId){
+      const container = document.getElementById(containerId);
+      data.forEach(src=>{
+        const img = document.createElement('img');
+        img.src = src;
+        container.appendChild(img);
+      });
+    }
 
-    /* ---------- Insert user's 468x60 banner code safely ---------- */
-    (function insertBanner(){
-      try{
-        var bannerContainer = document.getElementById('banner-ad-slot');
-        // User-provided ad script (468x60)
-        var script1 = document.createElement('script');
-        script1.type = 'text/javascript';
-        script1.text = "atOptions = { 'key' : '996a8692d23fea3e145411158d205129', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };";
-        bannerContainer.appendChild(script1);
+    renderCards(freeData, 'freeSection');
+    renderCards(paidData, 'paidSection');
+    renderGallery(galleryData, 'gallery');
 
-        var script2 = document.createElement('script');
-        script2.type = 'text/javascript';
-        script2.src = (location.protocol === 'https:' ? 'https:' : 'http:') + "//www.highperformanceformat.com/996a8692d23fea3e145411158d205129/invoke.js";
-        script2.async = true;
-        bannerContainer.appendChild(script2);
-      }catch(e){
-        console.warn('Banner ad failed to insert', e);
-      }
-    })();
-
-    /* ---------- Smart link modal behavior ---------- */
+    /* -------- Smart Link Modal -------- */
     (function smartLink(){
       var overlay = document.getElementById('smartOverlay');
       var iframe = document.getElementById('smartFrame');
@@ -202,54 +243,33 @@
       var smartUrl = 'https://www.profitableratecpm.com/m5mi6ysh?key=9c4ddf0797f28bf610ffd7af70515e3d';
 
       function showOverlay(){
-        // Try embedding in iframe first (less likely to be blocked), otherwise open in new tab
         iframe.src = smartUrl;
         overlay.classList.add('show');
       }
 
-      // show after 1 second
       window.addEventListener('load', function(){
-        setTimeout(showOverlay, 1000);
-      });
-
-      // close button
-      closeBtn.addEventListener('click', function(){
-        overlay.classList.remove('show');
-        // stop iframe loading
-        try{ iframe.src = 'about:blank'; }catch(e){}
-      });
-
-      // if iframe refuses to load (X-Frame-Options), fallback: open in new tab and hide overlay
-      iframe.addEventListener('load', function(){
-        try{
-          var iframeLocation = iframe.contentWindow.location.href;
-          // Some browsers will throw when cross-origin; just ignore
-        }catch(e){
-          // likely cross-origin/embed blocked; fallback: open in new tab
-          window.open(smartUrl, '_blank');
-          overlay.classList.remove('show');
+        var lastShown = localStorage.getItem('smartLastShown');
+        var now = Date.now();
+        if (!lastShown || now - lastShown > 5*60*1000) {
+          setTimeout(function(){
+            showOverlay();
+            localStorage.setItem('smartLastShown', now);
+          }, 1000);
         }
       });
 
-      // allow clicking outside modal to close
+      closeBtn.addEventListener('click', function(){
+        overlay.classList.remove('show');
+        iframe.src = 'about:blank';
+      });
+
       overlay.addEventListener('click', function(e){
         if(e.target === overlay) closeBtn.click();
       });
-
-      // keyboard escape
-      document.addEventListener('keyup', function(e){ if(e.key === 'Escape') closeBtn.click(); });
-    })();
-
-    /* Small UX: add left/right swipe support for small devices on scrollbars (optional) */
-    (function touchScroll(){
-      const lists = document.querySelectorAll('.scrollbar, .gallery');
-      lists.forEach(el=>{
-        let isDown=false, startX, scrollLeft;
-        el.addEventListener('mousedown', (e)=>{ isDown=true; el.classList.add('active'); startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft; });
-        el.addEventListener('mouseleave', ()=>{ isDown=false; el.classList.remove('active'); });
-        el.addEventListener('mouseup', ()=>{ isDown=false; el.classList.remove('active'); });
-        el.addEventListener('mousemove', (e)=>{ if(!isDown) return; e.preventDefault(); const x = e.pageX - el.offsetLeft; const walk = (x - startX) * 1.2; el.scrollLeft = scrollLeft - walk; });
+      document.addEventListener('keyup', function(e){
+        if(e.key === 'Escape') closeBtn.click();
       });
     })();
-  </script></body>
+  </script>
+</body>
 </html>
