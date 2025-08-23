@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subhashree Sahu Video Paid</title>
-  <meta name="description" content="Exclusive paid content - Subhashree Sahu video. Watch in HD.">
-  <meta name="keywords" content="Subhashree Sahu, Paid Video, Exclusive, Lust Work">
-  <meta property="og:title" content="Subhashree Sahu Paid Video">
-  <meta property="og:description" content="Watch the exclusive Subhashree Sahu paid content.">
-  <meta property="og:type" content="video.other">
-  <meta property="og:site_name" content="lust.work.gd">
+  <title>Subhashree Sahu Video - Paid</title>
+  <meta name="description" content="Exclusive paid content of Subhashree Sahu. Unlock with password.">
+  <meta name="keywords" content="Subhashree Sahu, MMS, Paid Video, Lust Work">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
     body {
@@ -17,113 +14,134 @@
       font-family: Arial, sans-serif;
       background: #000;
       color: #fff;
-    }
-
-    /* Popup overlay */
-    #lockOverlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    /* Lock overlay */
+    #lockOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       z-index: 9999;
       text-align: center;
       padding: 20px;
     }
-    #lockOverlay h2 {
+
+    #lockOverlay h1 {
       font-size: 1.5rem;
       margin-bottom: 15px;
-      color: #ff007f;
+      color: #ff69b4;
     }
+
     #lockOverlay input {
       padding: 10px;
-      font-size: 1rem;
       border: none;
       border-radius: 6px;
-      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 200px;
       text-align: center;
     }
+
     #lockOverlay button {
-      margin-top: 15px;
       padding: 10px 20px;
-      background: #ff007f;
-      color: white;
       border: none;
+      background: #ff1493;
+      color: #fff;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1rem;
-    }
-    #lockOverlay button:hover {
-      background: #00ff9d;
-    }
-    #instaBtn {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 10px 20px;
-      background: #833ab4;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
       font-weight: bold;
     }
 
-    /* Video player wrapper */
+    #lockOverlay a {
+      margin-top: 15px;
+      color: #00f0ff;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    /* Video Section */
     #videoSection {
-      display: none; /* hidden until unlocked */
-      width: 100%;
-      height: 100vh;
-      display: flex;
+      display: none;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      width: 100%;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 10px;
     }
 
     iframe {
       width: 100%;
-      height: 80vh;
+      height: 70vh;
       border: none;
+      border-radius: 10px;
     }
 
-    /* Banner Ad */
-    #adContainer {
+    /* Ad Section */
+    #adSection {
+      margin-top: 15px;
       width: 100%;
-      text-align: center;
-      margin: 10px 0;
+      display: flex;
+      justify-content: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Password Lock Overlay -->
+  <!-- Lock Overlay -->
   <div id="lockOverlay">
-    <h2>Buy this content<br>Admin will give you the password of this page</h2>
+    <h1>🔒 Buy this content to unlock</h1>
     <input type="password" id="passwordInput" placeholder="Enter Password">
     <button onclick="unlockPage()">Unlock</button>
-    <a id="instaBtn" href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank">Instagram</a>
-    <p style="margin-top:15px;font-size:0.9rem;color:#ccc;">Hint: Ask admin for the password</p>
+    <a href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank">💬 Contact Admin on Instagram</a>
   </div>
 
-  <!-- Real Video Page -->
+  <!-- Video Section -->
   <div id="videoSection">
     <iframe src="https://drive.google.com/file/d/16--BxFKwKA3a5m8-X45Tqh-UgH0jD2Cy/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
+    
     <!-- Banner Ad -->
-    <div id="adContainer">
-      <script type="text/javascript" src="//www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js"></script>
+    <div id="adSection">
+      <script type="text/javascript" src="https://www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js"></script>
     </div>
   </div>
 
   <script>
+    let validPasswords = [];
+
+    // Load passwords from pass.txt
+    fetch("Images/pass.txt")
+      .then(response => response.text())
+      .then(text => {
+        text.split("\n").forEach(line => {
+          let parts = line.split("-");
+          if (parts.length === 2) {
+            validPasswords.push(parts[1].trim());
+          }
+        });
+      })
+      .catch(err => {
+        console.error("Error loading password file", err);
+      });
+
     function unlockPage() {
-      const input = document.getElementById("passwordInput").value;
-      if (input === "6969") {
+      const input = document.getElementById("passwordInput").value.trim();
+      if (validPasswords.includes(input)) {
         document.getElementById("lockOverlay").style.display = "none";
-        document.getElementById("videoSection").style.display = "block";
+        document.getElementById("videoSection").style.display = "flex";
       } else {
-        alert("Incorrect Password! Contact admin to buy access.");
+        alert("❌ Incorrect Password! Contact admin to buy access.");
       }
     }
   </script>
