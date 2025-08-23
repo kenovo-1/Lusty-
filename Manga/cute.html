@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Subhashree Sahu Paid Videos">
-  <meta name="keywords" content="Subhashree Sahu, paid videos, lust.work.gd">
+  <meta name="description" content="Cute Paid Videos">
+  <meta name="keywords" content="Cute, paid videos, lust.work.gd">
   <meta name="author" content="lust.work.gd">
-  <title>Paid Videos - lust.work.gd</title>
+  <title>Cute Paid Videos - lust.work.gd</title>
   <style>
     body {
       margin: 0;
@@ -27,9 +27,17 @@
       justify-content: center;
       flex-direction: column;
       z-index: 9999;
+      animation: fadeIn 0.5s ease-in-out;
     }
-    #passwordOverlay h2 { margin-bottom: 15px; }
-    #passwordOverlay p { margin: 0 0 15px; }
+    #passwordOverlay h2 {
+      margin-bottom: 15px;
+      color: hotpink;
+      text-shadow: 0 0 10px hotpink;
+    }
+    #passwordOverlay p {
+      margin-bottom: 20px;
+      color: #ccc;
+    }
     #passwordOverlay input {
       padding: 10px;
       font-size: 16px;
@@ -37,7 +45,6 @@
       border-radius: 5px;
       border: none;
       text-align: center;
-      outline: none;
     }
     #passwordOverlay button {
       padding: 10px 20px;
@@ -47,6 +54,10 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+    #passwordOverlay button:hover {
+      background: deeppink;
     }
     #passwordOverlay a {
       margin-top: 15px;
@@ -63,6 +74,7 @@
       background: #222;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(255,0,150,0.5);
+      animation: fadeInUp 0.8s ease-in-out;
     }
     iframe {
       width: 100%;
@@ -74,6 +86,15 @@
     /* Responsive */
     @media (max-width: 768px) {
       iframe { height: 250px; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
@@ -90,8 +111,10 @@
 
   <!-- Video Section -->
   <div id="videoSection" style="display:none;">
-    <h1>Paid Videos 🎥</h1>
-<div class="video-container">
+    <h1 style="color:hotpink; text-shadow:0 0 10px hotpink;">Cute Paid Videos 🎥</h1>
+
+    <!-- Videos -->
+    <div class="video-container">
       <iframe src="https://drive.google.com/file/d/16Lq59zUOm48lMML5bqpAxT0vx7rum2cy/preview" allowfullscreen></iframe>
     </div>
     <div class="video-container">
@@ -107,7 +130,7 @@
       <iframe src="https://drive.google.com/file/d/16MBLSFJmitM0lobQcfDM8hzkqIdY_iF4/preview" allowfullscreen></iframe>
     </div>
 
-    <!-- Native banner ad -->
+    <!-- Ads -->
     <div style="margin:20px 0;">
       <script type="text/javascript" src="//www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js"></script>
     </div>
@@ -122,12 +145,16 @@
         const text = await response.text();
 
         const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
-        const validPasswords = lines.map(line => {
-          const parts = line.split("-");
-          return parts[1] ? parts[1].trim() : null;
-        }).filter(Boolean);
+        let cutePass = null;
 
-        if (validPasswords.includes(input)) {
+        for (let line of lines) {
+          if (line.toLowerCase().startsWith("cute")) {
+            cutePass = line.split("-")[1]?.trim();
+            break;
+          }
+        }
+
+        if (input === cutePass) {
           document.getElementById("passwordOverlay").style.display = "none";
           document.getElementById("videoSection").style.display = "block";
         } else {
@@ -135,7 +162,6 @@
         }
       } catch (err) {
         alert("Error loading password file.");
-        console.error(err);
       }
     }
   </script>
