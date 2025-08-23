@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Paid Videos - lust.work.gd">
+  <meta name="description" content="Subhashree Sahu Paid Videos">
   <meta name="keywords" content="Subhashree Sahu, paid videos, lust.work.gd">
   <meta name="author" content="lust.work.gd">
   <title>Paid Videos - lust.work.gd</title>
@@ -28,14 +28,8 @@
       flex-direction: column;
       z-index: 9999;
     }
-    #passwordOverlay h2 {
-      margin-bottom: 15px;
-      color: hotpink;
-    }
-    #passwordOverlay p {
-      margin-bottom: 15px;
-      color: #aaa;
-    }
+    #passwordOverlay h2 { margin-bottom: 15px; }
+    #passwordOverlay p { margin: 0 0 15px; }
     #passwordOverlay input {
       padding: 10px;
       font-size: 16px;
@@ -53,10 +47,6 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s;
-    }
-    #passwordOverlay button:hover {
-      background: deeppink;
     }
     #passwordOverlay a {
       margin-top: 15px;
@@ -101,9 +91,7 @@
   <!-- Video Section -->
   <div id="videoSection" style="display:none;">
     <h1>Paid Videos 🎥</h1>
-
-    <!-- Example videos (replace links easily here) -->
-    <div class="video-container">
+<div class="video-container">
       <iframe src="https://drive.google.com/file/d/16Lq59zUOm48lMML5bqpAxT0vx7rum2cy/preview" allowfullscreen></iframe>
     </div>
     <div class="video-container">
@@ -133,24 +121,13 @@
         const response = await fetch("images/pass.txt");
         const text = await response.text();
 
-        // Split lines like "Subhashree - 6969"
         const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
-
-        // Create object {Name: Password}
-        const passMap = {};
-        lines.forEach(line => {
+        const validPasswords = lines.map(line => {
           const parts = line.split("-");
-          if (parts.length === 2) {
-            const name = parts[0].trim().toLowerCase();
-            const pass = parts[1].trim();
-            passMap[name] = pass;
-          }
-        });
+          return parts[1] ? parts[1].trim() : null;
+        }).filter(Boolean);
 
-        // Check if entered password matches any
-        const isValid = Object.values(passMap).includes(input);
-
-        if (isValid) {
+        if (validPasswords.includes(input)) {
           document.getElementById("passwordOverlay").style.display = "none";
           document.getElementById("videoSection").style.display = "block";
         } else {
