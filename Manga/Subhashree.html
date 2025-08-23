@@ -1,301 +1,121 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Subhashree Sahu Video — Paid</title>
-  <meta name="description" content="Exclusive paid content of Subhashree Sahu. Unlock with password.">
-  <meta name="keywords" content="Subhashree Sahu, paid video, exclusive" />
-  <meta property="og:title" content="Subhashree Sahu Paid Video" />
-  <meta property="og:description" content="Watch the exclusive Subhashree Sahu paid content." />
-  <meta property="og:type" content="video.other" />
-  <meta property="og:site_name" content="lust.work.gd" />
-  <link rel="icon" href="favicon.png" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Subhashree Sahu Paid Video">
+  <meta name="keywords" content="Subhashree Sahu, paid video, lust.work.gd">
+  <meta name="author" content="lust.work.gd">
+  <title>Subhashree Paid Video - lust.work.gd</title>
   <style>
-    :root{
-      --accent:#ff1493;
-      --bg:#07060a;
-      --muted:#cfd8e3;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#04040a 0%, #0b0014 100%);
-      color:#fff;
-      min-height:100vh;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
     }
 
-    /* FULLSCREEN LOCK OVERLAY */
-    #lockOverlay{
-      position:fixed; inset:0;
-      display:flex; flex-direction:column; gap:12px;
-      align-items:center; justify-content:center;
-      background: rgba(3,3,7,0.96);
-      z-index:9999; padding:24px; text-align:center;
+    /* Overlay popup */
+    #passwordOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
     }
-    #lockOverlay h1{margin:0;font-size:1.25rem;color:var(--accent)}
-    #status{font-size:0.95rem;color:var(--muted);margin-top:6px}
-    #passwordInput{
-      width:220px; max-width:80%;
-      padding:10px 12px; font-size:1rem; border-radius:8px;
-      border: 1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);
-      color:#fff; text-align:center;
+    #passwordOverlay h2 {
+      margin-bottom: 20px;
     }
-    #unlockBtn{
-      margin-top:8px; padding:10px 18px; border-radius:8px; border:0;
-      background: linear-gradient(90deg,var(--accent), #00f2d6);
-      color:#111; font-weight:700; cursor:pointer; font-size:1rem;
+    #passwordOverlay input {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
     }
-    #unlockBtn[disabled]{ opacity:0.5; cursor:not-allowed; }
-
-    #instaLink{
-      display:inline-block; margin-top:12px; color:#fff; text-decoration:none;
-      background:linear-gradient(90deg,#833ab4,#fd1d1d); padding:8px 14px; border-radius:8px;
-      font-weight:600;
+    #passwordOverlay button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: hotpink;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    /* PAGE CONTENT (hidden while locked) */
-    #page {
-      opacity:1; transition: opacity .18s ease;
-      display:flex; flex-direction:column; align-items:center; gap:14px;
-      padding:18px 12px; max-width:1200px; margin:0 auto;
-    }
-    header{ width:100%; max-width:1100px; text-align:left; margin-top:8px; }
-    header h2{ margin:0; font-family: 'Orbitron', sans-serif; font-size:1.2rem; color: #ffb6e6; }
-
-    /* responsive video container */
-    .video-wrap{
-      width:100%;
-      max-width:1100px;
-      background:rgba(255,255,255,0.02);
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 20px 60px rgba(0,0,0,0.6);
-    }
-    .video-iframe{
-      width:100%;
-      height:calc(100vh - 220px); /* large view on desktop */
-      max-height:820px;
-      border:0;
-      display:block;
-      background:#000;
+    #passwordOverlay a {
+      margin-top: 15px;
+      display: inline-block;
+      color: cyan;
+      text-decoration: none;
     }
 
-    /* smaller screens */
-    @media (max-width:900px){
-      .video-iframe{ height:56vh; }
+    /* Video container */
+    .video-container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #222;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255,0,150,0.5);
     }
-    @media (max-width:520px){
-      .video-iframe{ height:48vh; }
-      #passwordInput{ width:180px }
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
     }
 
-    /* ad container */
-    #adContainer{
-      width:100%; max-width:1100px; text-align:center; padding:10px 0;
+    @media (max-width: 768px) {
+      iframe { height: 250px; }
     }
-
-    /* subtle error state */
-    .shake{ animation:shake .5s; }
-    @keyframes shake{ 0%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-6px)}100%{transform:translateX(0)} }
   </style>
 </head>
 <body>
 
-  <!-- LOCK OVERLAY (FULLSCREEN) -->
-  <div id="lockOverlay" aria-hidden="false" role="dialog" aria-label="Locked content">
-    <h1>Buy this content — admin will give you the password</h1>
-
-    <input id="passwordInput" type="password" placeholder="Enter password" aria-label="Password" autocomplete="off" />
-    <div>
-      <button id="unlockBtn" disabled>Loading passwords…</button>
-    </div>
-
-    <div id="status">Loading passwords from <code>Images/pass.txt</code>…</div>
-
-    <a id="instaLink" href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <div style="font-size:.9rem;color:#bfc9d6;margin-top:10px">If file is missing, the default password is <strong>6969</strong></div>
+  <!-- Overlay -->
+  <div id="passwordOverlay">
+    <h2>Buy this content 🔒</h2>
+    <p>Contact Admin on Instagram for password</p>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock</button>
+    <a href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank">Instagram</a>
   </div>
 
-  <!-- REAL PAGE -->
-  <div id="page" aria-hidden="true">
-    <header>
-      <h2>Subhashree Sahu — Paid Video</h2>
-      <div style="color:#cbd6e6;font-size:.92rem;margin-top:6px">Secure paid page — unlocked after password</div>
-    </header>
+  <!-- Video Section -->
+  <div id="videoSection" style="display:none;">
+    <h1>Paid Video 🎥</h1>
 
-    <div class="video-wrap" role="region" aria-label="Video player">
-      <!-- Google Drive preview (use /preview) -->
-      <iframe id="playerFrame"
-        class="video-iframe"
-        src="about:blank"
-        allow="autoplay; encrypted-media; fullscreen"
-        allowfullscreen
-        title="Subhashree Sahu paid video"></iframe>
+    <div class="video-container">
+      <iframe src="https://drive.google.com/file/d/16Lq59zUOm48lMML5bqpAxT0vx7rum2cy/preview" allowfullscreen></iframe>
     </div>
 
-    <div id="adContainer" aria-label="Advertisement">
-      <!-- Native banner ad (script provided) -->
-      <script type="text/javascript" src="https://www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js" async></script>
+    <!-- Native banner ad -->
+    <div style="margin:20px 0;">
+      <script type="text/javascript" src="//www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js"></script>
     </div>
   </div>
-
-  <noscript style="display:block;padding:18px;text-align:center;color:#f88">JavaScript is required to unlock this page.</noscript>
 
   <script>
-  (function(){
-    const PASS_FILE = 'Images/pass.txt';     // case-sensitive path
-    const FALLBACK_PASSWORDS = ['69'];     // used if fetch fails
-    const VIDEO_PREVIEW = 'https://drive.google.com/file/d/16--BxFKwKA3a5m8-X45Tqh-UgH0jD2Cy/preview';
-    const STORAGE_KEY = 'unlocked_subhashree_v1';
+    // password is 6969 stored in binary
+    const binaryPass = "1101100111001";  
+    const correctPassword = parseInt(binaryPass, 2).toString(); 
 
-    const lockOverlay = document.getElementById('lockOverlay');
-    const page = document.getElementById('page');
-    const input = document.getElementById('passwordInput');
-    const btn = document.getElementById('unlockBtn');
-    const status = document.getElementById('status');
-    const playerFrame = document.getElementById('playerFrame');
-
-    let validPasswords = [];
-    let loaded = false;
-
-    // Helper: parse file content into passwords
-    function parsePassText(text){
-      if(!text) return [];
-      // strip BOM
-      text = text.replace(/^\uFEFF/, '');
-      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
-      const out = [];
-      for(const line of lines){
-        // Try to extract last numeric token after separators - or full token
-        // Accept formats like: "Name -6969", "Name - 6969", "6969", "Name:6969"
-        // Match trailing digits
-        const m = line.match(/(\d{2,})\s*$/);
-        if(m){
-          out.push(m[1]);
-          continue;
-        }
-        // Otherwise split by - or : and take last piece
-        const parts = line.split(/[-:]/).map(s=>s.trim()).filter(Boolean);
-        if(parts.length){
-          out.push(parts[parts.length-1]);
-        }
-      }
-      // unique
-      return Array.from(new Set(out.filter(Boolean)));
-    }
-
-    // Show unlocked state
-    function unlockUI(){
-      try{ localStorage.setItem(STORAGE_KEY, '1'); }catch(e){}
-      lockOverlay.style.display = 'none';
-      lockOverlay.setAttribute('aria-hidden','true');
-      page.style.display = 'flex';
-      page.setAttribute('aria-hidden','false');
-      // load the video
-      playerFrame.src = VIDEO_PREVIEW;
-    }
-
-    // Show locked UI (initial)
-    function lockUI(){
-      lockOverlay.style.display = 'flex';
-      lockOverlay.setAttribute('aria-hidden','false');
-      page.style.display = 'none';
-      page.setAttribute('aria-hidden','true');
-      playerFrame.src = 'about:blank';
-    }
-
-    // Try to fetch pass file, with timeout
-    function fetchWithTimeout(url, timeout=3000){
-      return new Promise((resolve, reject) => {
-        const timer = setTimeout(()=>reject(new Error('timeout')), timeout);
-        fetch(url, { cache: 'no-cache' })
-          .then(r => {
-            clearTimeout(timer);
-            if(!r.ok) return reject(new Error('not ok'));
-            return r.text();
-          }).then(txt => resolve(txt))
-          .catch(err => { clearTimeout(timer); reject(err); });
-      });
-    }
-
-    // Initialize: check if already unlocked in localStorage
-    try {
-      const already = localStorage.getItem(STORAGE_KEY);
-      if(already === '1'){
-        // Immediately show page
-        unlockUI();
-        return;
-      }
-    } catch(e){ /* ignore storage errors */ }
-
-    // Disable button until loaded
-    btn.disabled = true;
-    input.disabled = true;
-
-    // Load pass file (attempt); fallback if fails
-    fetchWithTimeout(PASS_FILE, 2500)
-      .then(text => {
-        const parsed = parsePassText(text);
-        if(parsed.length){
-          validPasswords = parsed;
-          status.textContent = `Loaded ${parsed.length} password(s).`;
-        } else {
-          validPasswords = FALLBACK_PASSWORDS.slice();
-          status.textContent = `pass file parsed but no passwords found — using fallback.`;
-        }
-      })
-      .catch(err => {
-        // fallback
-        validPasswords = FALLBACK_PASSWORDS.slice();
-        status.textContent = `Could not fetch ${PASS_FILE}. Using fallback password.`;
-      })
-      .finally(() => {
-        loaded = true;
-        btn.disabled = false;
-        input.disabled = false;
-        btn.textContent = 'Unlock';
-      });
-
-    // Allow pressing Enter
-    input.addEventListener('keyup', (e) => {
-      if(e.key === 'Enter' && !btn.disabled) tryUnlock();
-    });
-
-    btn.addEventListener('click', tryUnlock);
-
-    function tryUnlock(){
-      if(!loaded){
-        status.textContent = 'Still loading passwords… please wait';
-        return;
-      }
-      const val = (input.value || '').trim();
-      if(!val){
-        status.textContent = 'Please enter a password';
-        input.classList.add('shake');
-        setTimeout(()=>input.classList.remove('shake'),500);
-        return;
-      }
-      if(validPasswords.includes(val)){
-        unlockUI();
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+      if (input === correctPassword) {
+        document.getElementById("passwordOverlay").style.display = "none";
+        document.getElementById("videoSection").style.display = "block";
       } else {
-        status.textContent = 'Incorrect password — contact admin';
-        input.classList.add('shake');
-        setTimeout(()=>input.classList.remove('shake'),600);
+        alert("Incorrect password!");
       }
     }
-
-    // For debugging: expose values on window (remove in production)
-    window.__debugPasswords = () => ({validPasswords, loaded});
-
-    // SAFETY: prevent right-click saving or dragging the iframe overlay by keeping overlay on top until unlock
-    lockUI();
-
-  })();
   </script>
+
 </body>
 </html>
