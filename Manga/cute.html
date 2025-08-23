@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Subhashree Sahu Paid Videos">
+  <meta name="keywords" content="Subhashree Sahu, paid videos, lust.work.gd">
+  <meta name="author" content="lust.work.gd">
+  <title>Paid Videos - lust.work.gd</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* Overlay popup */
+    #passwordOverlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+    #passwordOverlay h2 {
+      margin-bottom: 20px;
+    }
+    #passwordOverlay input {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+      text-align: center;
+    }
+    #passwordOverlay button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: hotpink;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #passwordOverlay a {
+      margin-top: 15px;
+      display: inline-block;
+      color: cyan;
+      text-decoration: none;
+    }
+
+    /* Video container */
+    .video-container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 10px;
+      background: #222;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255,0,150,0.5);
+    }
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      iframe { height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay -->
+  <div id="passwordOverlay">
+    <h2>Buy this content 🔒</h2>
+    <p>Contact Admin on Instagram for password</p>
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button onclick="checkPassword()">Unlock</button>
+    <a href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank">Instagram</a>
+  </div>
+
+  <!-- Video Section -->
+  <div id="videoSection" style="display:none;">
+    <h1>Paid Videos 🎥</h1>
+
+    <!-- Example videos (replace links easily here) -->
+    <div class="video-container">
+      <iframe src="https://drive.google.com/file/d/16Lq59zUOm48lMML5bqpAxT0vx7rum2cy/preview" allowfullscreen></iframe>
+    </div>
+    <div class="video-container">
+      <iframe src="https://drive.google.com/file/d/16VusSr8G1K_hRvMWrXkNoCbK6yrDxJQb/preview" allowfullscreen></iframe>
+    </div>
+    <div class="video-container">
+      <iframe src="https://drive.google.com/file/d/16TbSaYJZ7Lu_aFesc0KfceHPx599qdir/preview" allowfullscreen></iframe>
+    </div>
+<div class="video-container">
+      <iframe src="https://drive.google.com/file/d/16R-s1cwg_-17dQLUUdcifqmywilcZ1nB/preview" allowfullscreen></iframe>
+    </div>
+<div class="video-container">
+      <iframe src="https://drive.google.com/file/d/16MBLSFJmitM0lobQcfDM8hzkqIdY_iF4/view?usp=drivesdk/preview" allowfullscreen></iframe>
+    </div>
+
+    <!-- Native banner ad -->
+    <div style="margin:20px 0;">
+      <script type="text/javascript" src="//www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js"></script>
+    </div>
+  </div>
+
+  <script>
+    async function checkPassword() {
+      const input = document.getElementById("passwordInput").value.trim();
+
+      try {
+        const response = await fetch("images/pass.txt");
+        const text = await response.text();
+
+        const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+        const validPasswords = lines.map(line => line.split("-")[1]?.trim());
+
+        if (validPasswords.includes(input)) {
+          document.getElementById("passwordOverlay").style.display = "none";
+          document.getElementById("videoSection").style.display = "block";
+        } else {
+          alert("Incorrect password!");
+        }
+      } catch (err) {
+        alert("Error loading password file.");
+      }
+    }
+  </script>
+
+</body>
+</html>l
