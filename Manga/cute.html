@@ -1,140 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Cute Paid Videos">
-  <meta name="keywords" content="Cute, paid videos, lust.work.gd">
-  <meta name="author" content="lust.work.gd">
-  <title>Cute Paid Videos - lust.work.gd</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cute Videos — Paid</title>
+  <meta name="description" content="Exclusive paid content of Cute videos. Unlock with password.">
+  <meta name="keywords" content="Cute, paid video, exclusive" />
+  <meta property="og:title" content="Cute Paid Video" />
+  <meta property="og:description" content="Watch the exclusive Cute paid content." />
+  <meta property="og:type" content="video.other" />
+  <meta property="og:site_name" content="lust.work.gd" />
+  <link rel="icon" href="favicon.png" />
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
-      text-align: center;
+    :root{
+      --accent:#ff1493;
+      --bg:#07060a;
+      --muted:#cfd8e3;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#04040a 0%, #0b0014 100%);
+      color:#fff;
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Overlay popup */
-    #passwordOverlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      z-index: 9999;
+    /* FULLSCREEN LOCK OVERLAY */
+    #lockOverlay{
+      position:fixed; inset:0;
+      display:flex; flex-direction:column; gap:12px;
+      align-items:center; justify-content:center;
+      background: rgba(3,3,7,0.96);
+      z-index:9999; padding:24px; text-align:center;
     }
-    #passwordOverlay h2 {
-      margin-bottom: 20px;
+    #lockOverlay h1{margin:0;font-size:1.25rem;color:var(--accent)}
+    #status{font-size:0.95rem;color:var(--muted);margin-top:6px}
+    #passwordInput{
+      width:220px; max-width:80%;
+      padding:10px 12px; font-size:1rem; border-radius:8px;
+      border: 1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);
+      color:#fff; text-align:center;
     }
-    #passwordOverlay input {
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: none;
-      text-align: center;
-    }
-    #passwordOverlay button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: hotpink;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #passwordOverlay a {
-      margin-top: 15px;
-      display: inline-block;
-      color: cyan;
-      text-decoration: none;
+    #unlockBtn{
+      margin-top:8px; padding:10px 18px; border-radius:8px; border:0;
+      background: linear-gradient(90deg,var(--accent), #00f2d6);
+      color:#111; font-weight:700; cursor:pointer; font-size:1rem;
     }
 
-    /* Video container */
-    .video-container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 10px;
-      background: #222;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255,0,150,0.5);
-    }
-    iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
-      border-radius: 10px;
+    #instaLink{
+      display:inline-block; margin-top:12px; color:#fff; text-decoration:none;
+      background:linear-gradient(90deg,#833ab4,#fd1d1d); padding:8px 14px; border-radius:8px;
+      font-weight:600;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      iframe { height: 250px; }
+    /* PAGE CONTENT (hidden while locked) */
+    #page {
+      opacity:1; transition: opacity .18s ease;
+      display:flex; flex-direction:column; align-items:center; gap:14px;
+      padding:18px 12px; max-width:1200px; margin:0 auto;
     }
+    header{ width:100%; max-width:1100px; text-align:left; margin-top:8px; }
+    header h2{ margin:0; font-family: 'Orbitron', sans-serif; font-size:1.2rem; color: #ffb6e6; }
+
+    /* responsive video container */
+    .video-wrap{
+      width:100%;
+      max-width:1100px;
+      background:rgba(255,255,255,0.02);
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    }
+    .video-iframe{
+      width:100%;
+      height:calc(100vh - 220px);
+      max-height:820px;
+      border:0;
+      display:block;
+      background:#000;
+    }
+
+    @media (max-width:900px){
+      .video-iframe{ height:56vh; }
+    }
+    @media (max-width:520px){
+      .video-iframe{ height:48vh; }
+      #passwordInput{ width:180px }
+    }
+
+    /* ad container */
+    #adContainer{
+      width:100%; max-width:1100px; text-align:center; padding:10px 0;
+    }
+
+    .shake{ animation:shake .5s; }
+    @keyframes shake{ 0%{transform:translateX(0)}25%{transform:translateX(-8px)}50%{transform:translateX(8px)}75%{transform:translateX(-6px)}100%{transform:translateX(0)} }
   </style>
 </head>
 <body>
 
-  <!-- Overlay -->
-  <div id="passwordOverlay">
-    <h2>Buy this content 🔒</h2>
-    <p>Contact Admin on Instagram for password</p>
-    <input type="password" id="passwordInput" placeholder="Enter password">
-    <button onclick="checkPassword()">Unlock</button>
-    <a href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank">Instagram</a>
+  <!-- LOCK OVERLAY -->
+  <div id="lockOverlay">
+    <h1>Buy this content — admin will give you the password</h1>
+    <input id="passwordInput" type="password" placeholder="Enter password" />
+    <div>
+      <button id="unlockBtn">Unlock</button>
+    </div>
+    <div id="status">Enter password to unlock.</div>
+    <a id="instaLink" href="https://www.instagram.com/buy.me.up.here?igsh=dWoxNjBkajU0dDY=" target="_blank">Instagram</a>
   </div>
 
-  <!-- Video Section -->
-  <div id="videoSection" style="display:none;">
-    <h1>Cute Paid Videos 🎥</h1>
+  <!-- REAL PAGE -->
+  <div id="page" aria-hidden="true" style="display:none;">
+    <header>
+      <h2>Cute — Paid Videos</h2>
+      <div style="color:#cbd6e6;font-size:.92rem;margin-top:6px">Secure paid page — unlocked after password</div>
+    </header>
 
-    <!-- Videos -->
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/16Lq59zUOm48lMML5bqpAxT0vx7rum2cy/preview" allowfullscreen></iframe>
-    </div>
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/16VusSr8G1K_hRvMWrXkNoCbK6yrDxJQb/preview" allowfullscreen></iframe>
-    </div>
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/16TbSaYJZ7Lu_aFesc0KfceHPx599qdir/preview" allowfullscreen></iframe>
-    </div>
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/16R-s1cwg_-17dQLUUdcifqmywilcZ1nB/preview" allowfullscreen></iframe>
-    </div>
-    <div class="video-container">
-      <iframe src="https://drive.google.com/file/d/16MBLSFJmitM0lobQcfDM8hzkqIdY_iF4/preview" allowfullscreen></iframe>
-    </div>
+    <!-- Video players -->
+    <div class="video-wrap"><iframe class="video-iframe" src="https://drive.google.com/file/d/16Lq59zUOm48lMML5bqpAxT0vx7rum2cy/preview" allowfullscreen></iframe></div>
+    <div class="video-wrap"><iframe class="video-iframe" src="https://drive.google.com/file/d/16VusSr8G1K_hRvMWrXkNoCbK6yrDxJQb/preview" allowfullscreen></iframe></div>
+    <div class="video-wrap"><iframe class="video-iframe" src="https://drive.google.com/file/d/16TbSaYJZ7Lu_aFesc0KfceHPx599qdir/preview" allowfullscreen></iframe></div>
+    <div class="video-wrap"><iframe class="video-iframe" src="https://drive.google.com/file/d/16R-s1cwg_-17dQLUUdcifqmywilcZ1nB/preview" allowfullscreen></iframe></div>
+    <div class="video-wrap"><iframe class="video-iframe" src="https://drive.google.com/file/d/16MBLSFJmitM0lobQcfDM8hzkqIdY_iF4/preview" allowfullscreen></iframe></div>
 
-    <!-- Native banner ad -->
-    <div style="margin:20px 0;">
-      <script type="text/javascript" src="//www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js"></script>
+    <!-- Native ad -->
+    <div id="adContainer">
+      <script type="text/javascript" src="https://www.profitableratecpm.com/55dfe3aaa958ee80c83245b3581a6b03/invoke.js" async></script>
     </div>
   </div>
 
   <script>
-    function binaryToText(binaryStr) {
-      return binaryStr.split(" ").map(bin => String.fromCharCode(parseInt(bin, 2))).join("");
+    // Hidden password in binary ("1042")
+    const hiddenBinary = "00110001 00110000 00110100 00110010";
+
+    function binaryToText(bin){
+      return bin.split(" ").map(b => String.fromCharCode(parseInt(b, 2))).join("");
     }
 
-    function checkPassword() {
-      const input = document.getElementById("passwordInput").value.trim();
+    const correctPassword = binaryToText(hiddenBinary);
 
-      // Binary for "1042"
-      const hiddenBinary = "00110001 00110000 00110100 00110010";
-      const correctPassword = binaryToText(hiddenBinary);
+    const lockOverlay = document.getElementById('lockOverlay');
+    const page = document.getElementById('page');
+    const input = document.getElementById('passwordInput');
+    const btn = document.getElementById('unlockBtn');
+    const status = document.getElementById('status');
 
-      if (input === correctPassword) {
-        document.getElementById("passwordOverlay").style.display = "none";
-        document.getElementById("videoSection").style.display = "block";
+    function unlockUI(){
+      lockOverlay.style.display = 'none';
+      page.style.display = 'flex';
+    }
+
+    btn.addEventListener('click', tryUnlock);
+    input.addEventListener('keyup', e => { if(e.key === 'Enter') tryUnlock(); });
+
+    function tryUnlock(){
+      const val = (input.value || '').trim();
+      if(val === correctPassword){
+        unlockUI();
       } else {
-        alert("Incorrect password!");
+        status.textContent = 'Incorrect password — contact admin';
+        input.classList.add('shake');
+        setTimeout(()=>input.classList.remove('shake'),600);
       }
     }
   </script>
-
 </body>
 </html>
